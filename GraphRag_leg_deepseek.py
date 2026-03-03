@@ -3,16 +3,69 @@ from sentence_transformers import SentenceTransformer
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # --- 1) MANUAL DATA: put your legal sections/paragraphs here ---
+
 DOCS = [
     {
-        "id": "ActA_s12_1",
-        "text": "Section 12(1): A person must ... (paste your statute text here)."
+        "id": "TheftAct1968_s1",
+        "text": (
+            "Theft Act 1968, Section 1: A person is guilty of theft if he dishonestly "
+            "appropriates property belonging to another with the intention of "
+            "permanently depriving the other of it."
+        )
     },
     {
-        "id": "Case_Smith_2019_p34_38",
-        "text": "R v Smith (2019) paras 34–38: The court held that ... (paste here)."
+        "id": "TheftAct1968_s2",
+        "text": (
+            "Theft Act 1968, Section 2: A person's appropriation of property belonging "
+            "to another is not dishonest if he believes he has a legal right to deprive "
+            "the other of it, would have the other's consent, or cannot discover the owner "
+            "by taking reasonable steps."
+        )
     },
-    # add more entries...
+    {
+        "id": "R_v_Ghosh_1982",
+        "text": (
+            "R v Ghosh [1982]: The Court of Appeal established a two-stage test for "
+            "dishonesty: (1) whether according to ordinary standards the conduct was dishonest, "
+            "and (2) whether the defendant realized that reasonable and honest people "
+            "would regard the conduct as dishonest."
+        )
+    },
+    {
+        "id": "Ivey_v_Genting_2017",
+        "text": (
+            "Ivey v Genting Casinos [2017] UKSC 67: The Supreme Court clarified that "
+            "the test for dishonesty is objective. The fact-finder must ascertain the "
+            "defendant's actual state of knowledge or belief as to the facts and then "
+            "determine whether the conduct was dishonest by the standards of ordinary "
+            "decent people."
+        )
+    },
+    {
+        "id": "R_v_Smith_1974_Property",
+        "text": (
+            "R v Smith (1974): The Court of Appeal held that property may still belong "
+            "to another under the Theft Act even if the defendant had some proprietary "
+            "interest in it, provided another person retained control or rights over it."
+        )
+    },
+    {
+        "id": "CriminalDamageAct1971_s1",
+        "text": (
+            "Criminal Damage Act 1971, Section 1(1): A person who without lawful excuse "
+            "destroys or damages property belonging to another, intending to destroy or "
+            "damage such property or being reckless as to whether such property would "
+            "be destroyed or damaged, shall be guilty of an offence."
+        )
+    },
+    {
+        "id": "R_v_Blaue_1975",
+        "text": (
+            "R v Blaue [1975]: The Court of Appeal held that a defendant must take the "
+            "victim as found (the thin skull rule). A victim's refusal of medical treatment "
+            "for religious reasons does not break the chain of causation."
+        )
+    }
 ]
 
 MODEL_ID = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"   # small HF DeepSeek model
